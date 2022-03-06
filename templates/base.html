@@ -1,0 +1,76 @@
+<!--------base.html--------->
+<!DOCTYPE HTML>
+<html lang="en">
+  
+  <head>
+    <meta charset='utf-8'>
+    <title>Vaccination Drive</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/css/mdui.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.2/dist/js/mdui.min.js"></script>
+  </head>
+
+  <style>
+  {% block style %}{% endblock %} #tb,th,td{ border: 1px solid black; border-collapse : collapse; } th,td{ padding : 7px; }
+  </style>
+  
+  <body>
+
+    <div class="mdui-appbar">
+      <div class="mdui-toolbar mdui-color-theme">
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon">
+          <i class="mdui-icon material-icons">menu</i>
+        </a>
+        <a href="javascript:;" class="mdui-typo-title">疫苗信息管理系统 Beta</a>
+        <div class="mdui-toolbar-spacer"></div>
+        <a href="#" class="mdui-btn mdui-btn-icon">
+          <i class="mdui-icon material-icons">refresh</i>
+        </a>
+        <a href="javascript:;" class="mdui-btn mdui-btn-icon">
+          <i class="mdui-icon material-icons">more_vert</i>
+        </a>
+      </div>
+      <div class="mdui-tab mdui-color-theme" mdui-tab>
+        <a href="/index" class="mdui-ripple mdui-ripple-white">Home</a>
+        <a href="/register" class="mdui-ripple mdui-ripple-white">Register</a>
+        <a href="/" class="mdui-ripple mdui-ripple-white">Login</a>
+      </div>
+    </div>
+
+    <center>
+      <h1>Vaccination-Niko</h1>
+      <h3>Registered Recipients</h3>
+    </center>{% block content %}{% endblock %}
+
+    <div class="mdui-table-fluid">
+    <table class="mdui-table mdui-table-hoverable" id="tb" style=" font-size : 12px">
+      <tr>
+        <th>Reference Number</th>
+        <th>Name</th>
+        <th>Mobile number</th>
+        <th>Aadhar card number</th>
+        <th>Vaccine name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>{% for value in vaccine_dict.values() %}
+      <tr>
+        <td>{{value.reference_number}}</td>
+        <td>{{value.name}}</td>
+        <td>{{value.mobile_number}}</td>
+        <td>{{value.aadhar_card_number}}</td>
+        <td>{{value.vaccine_name}}</td>
+        <td>
+          <button class="mdui-btn mdui-btn-raised" onclick=window.location.href="{{url_for( "update",reference_number=value.reference_number)}}">Update</button>
+          
+        </td>
+        <td>
+          <button class="mdui-btn mdui-btn-raised" onclick=window.location.href="{{ url_for("deleteRecord",reference_number=value.reference_number) }}">Delete</button>
+        </td>
+      </tr>{% endfor %}
+    </table>
+    </div>
+    <br>
+    <br>{% block home %}{% endblock %}
+    <content></content>
+  </body>
+
+</html>

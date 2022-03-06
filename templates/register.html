@@ -1,0 +1,79 @@
+<!------register.html------->
+{% extends "base.html" %}
+{% block style %}
+.registerDiv{
+float : right;
+top : 0;
+position : relative;
+border : 0.5px solid black;
+justify-content : top; 
+padding : 2px
+}
+input{
+font-size : 7px;
+}
+{% endblock %}
+{% block content %}
+
+<!--<script>
+    function func(){
+        var myselect = document.getElementById('vaccine');
+        var index = myselect.selectedIndex;
+        var va_index = myselect[index].value
+        var element = document.getElementsByName('viccineName')
+
+        element.value = va_index;
+    }
+</script>-->
+
+<div>
+<form class="bs-example bs-example-form" id="form" role="form" method="POST" action='/registerRecipient' style="font-size : 10px">
+    
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <i class="mdui-icon material-icons">account_circle</i>
+        <label class="mdui-textfield-label">Name</label>
+        <input class="form-control mdui-textfield-input" name='name' type="text" required/>
+        <div class="mdui-textfield-error">用户名不能为空</div>
+        <div class="mdui-textfield-helper">名称</div>
+    </div>
+
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <i class="mdui-icon material-icons">&#xe0cf;</i>
+        <label class="mdui-textfield-label">Mobile Number</label>
+        <input class="form-control mdui-textfield-input" name='mobileNumber' type="text" required/>
+        <div class="mdui-textfield-error">手机号码不能为空，且格式不能错误</div>
+        <div class="mdui-textfield-helper">手机号码</div>
+    </div>
+
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <i class="mdui-icon material-icons">&#xe870;</i>
+        <label class="mdui-textfield-label">Aadhar Card Number</label>
+        <input class="form-control mdui-textfield-input" name='aadharCardNumber' type="text" maxlength="12" required/>
+        <div class="mdui-textfield-error">Aadhar 卡号不能为空，且格式不能错误</div>
+        <div class="mdui-textfield-helper">Aadhar 卡号</div>
+    </div>
+        
+
+    <div class="mdui-textfield mdui-textfield-floating-label">
+        <i class="mdui-icon material-icons">&#xe88f;</i>
+        <label class="mdui-textfield-label">Vaccine Name</label>
+        <input class="form-control mdui-textfield-input" name='vaccineName' type="text" required/>
+        <div class="mdui-textfield-error">疫苗厂家不能为空</div>
+        <div class="mdui-textfield-helper">疫苗厂家</div>
+    </div>
+
+    <br /> 
+<br>    
+<center>
+<button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" type="submit"> Register </button>
+</br>
+<br>
+<br/>
+</center>
+</form>
+</div>
+
+
+{% endblock%}
+{% block home %}
+{% endblock %}
